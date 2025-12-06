@@ -1,0 +1,63 @@
+<!--
+  Requirement: Create the Student View for Assignments
+
+  Instructions:
+  This page is a read-only view for students to see all course assignments.
+  Each assignment should link to its dedicated detail page.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Assignments</title>
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="../common/styles.css"> <!-- Assuming common styles exist or will exist -->
+    <style>
+        /* Custom tweaks for the assignment cards */
+        article.assignment-card {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Course Assignments</h1>
+            <p>Access all your course assignments and projects here.</p>
+        </header>
+
+        <section id="assignment-list-section">
+            <!-- Example Assignment 1 -->
+            <article class="assignment-card">
+                <header>
+                    <h2>Assignment 1: HTML Basics</h2>
+                </header>
+                <p><strong>Due:</strong> 2023-10-15</p>
+                <p>Create a personal portfolio page using semantic HTML elements.</p>
+                <footer>
+                    <a href="details.html?id=1" role="button" class="contrast">View Details & Discussion</a>
+                </footer>
+            </article>
+
+            <!-- Example Assignment 2 -->
+            <article class="assignment-card">
+                <header>
+                    <h2>Assignment 2: CSS Styling</h2>
+                </header>
+                <p><strong>Due:</strong> 2023-10-22</p>
+                <p>Style your portfolio page using CSS Grid and Flexbox.</p>
+                <footer>
+                    <a href="details.html?id=2" role="button" class="contrast">View Details & Discussion</a>
+                </footer>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- Script to load assignments dynamically later -->
+    <script src="list.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!--
+  Requirement: Create the Admin View for Assignments
+
+  Instructions:
+  Fill in the HTML elements as described in the comments.
+  This page allows the teacher (admin) to perform full CRUD operations on course assignments.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Assignments</title>
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="../common/styles.css">
+</head>
+
+<body>
+
+    <main class="container">
+        <header>
+            <a href="list.html" role="button" class="outline secondary">Back to Student View</a>
+            <h1>Manage Assignments</h1>
+            <p>Admin Portal: Add, Edit, or Delete Assignments.</p>
+        </header>
+
+        <!-- Section 1: Add/Edit Assignment Form -->
+        <section>
+            <h2 id="form-title">Add a New Assignment</h2>
+
+            <form id="assignment-form">
+                <fieldset>
+                    <legend>Assignment Details</legend>
+
+                    <label for="assignment-title">
+                        Title
+                        <input type="text" id="assignment-title" name="assignment-title" required
+                            placeholder="e.g. HTML Basics">
+                    </label>
+
+                    <label for="assignment-description">
+                        Description
+                        <textarea id="assignment-description" name="assignment-description" rows="5" required
+                            placeholder="Enter detailed description..."></textarea>
+                    </label>
+
+                    <div class="grid">
+                        <label for="assignment-due-date">
+                            Due Date
+                            <input type="date" id="assignment-due-date" name="assignment-due-date" required>
+                        </label>
+
+                        <label for="assignment-files">
+                            Files / Links (One per line)
+                            <textarea id="assignment-files" name="assignment-files" rows="3"
+                                placeholder="https://example.com/resource1&#10;https://example.com/resource2"></textarea>
+                        </label>
+                    </div>
+
+                    <!-- Hidden ID field for editing -->
+                    <input type="hidden" id="assignment-id">
+
+                    <button type="submit" id="save-assignment-btn">Add Assignment</button>
+                    <button type="button" id="cancel-edit-btn" class="secondary outline" style="display: none;">Cancel
+                        Edit</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Section 2: Existing Assignments List -->
+        <section>
+            <h2>Current Assignments</h2>
+
+            <figure>
+                <table id="assignments-table" role="grid">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Due Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Row 1 -->
+                        <tr>
+                            <td>HTML Basics</td>
+                            <td>2023-10-15</td>
+                            <td>
+                                <button class="outline contrast smaller">Edit</button>
+                                <button class="outline danger smaller">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- Example Row 2 -->
+                        <tr>
+                            <td>CSS Styling</td>
+                            <td>2023-10-22</td>
+                            <td>
+                                <button class="outline contrast smaller">Edit</button>
+                                <button class="outline danger smaller">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </figure>
+        </section>
+
+    </main>
+
+    <script src="admin.js" defer></script>
+</body>
+
+</html>
