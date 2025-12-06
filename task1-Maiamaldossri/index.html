@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Course Landing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Courses</div>
+    <nav>
+      <a href="login.html" class="btn ghost">Log in</a>
+      <a href="signup.html" class="btn">Sign up</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-inner">
+      <h1>STUDENTS DASHBOARD</h1>
+      <p>A clean, focused course landing page. Start by creating an account or logging in.</p>
+      <div class="cta">
+        <a href="signup.html" class="btn large">Get started</a>
+        <a href="login.html" class="btn ghost large">I already have an account</a>
+      </div>
+    </div>
+    <footer class="hero-footer">
+      <small>© <span id="year"></span> MARIAM ALDOSSRI</small>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign up</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="auth-page">
+  <main class="card auth-card">
+    <h2>Create account</h2>
+    <form id="signupForm" novalidate>
+      <label>
+        Full name
+        <input type="text" name="name" required placeholder="Your name" />
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" required placeholder="you@example.com" />
+      </label>
+
+      <label>
+        Password
+        <div class="password-row">
+          <input id="signupPass" type="password" name="password" required minlength="6" placeholder="Choose a password" />
+          <button type="button" class="show-pass" data-target="signupPass">Show</button>
+        </div>
+      </label>
+
+      <div class="form-actions">
+        <button class="btn full" type="submit">Create account</button>
+      </div>
+
+      <p class="muted">Already registered? <a href="login.html">Log in</a>.</p>
+    </form>
+  </main>
+
+  <script>
+    document.querySelectorAll('.show-pass').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        input.type = input.type === 'password' ? 'text' : 'password';
+        btn.textContent = input.type === 'password' ? 'Show' : 'Hide';
+      });
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('This is a front-end demo only. Add backend code to create accounts.');
+    });
+  </script>
+</body>
+</html>

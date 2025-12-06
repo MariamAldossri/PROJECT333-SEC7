@@ -1,0 +1,122 @@
+:root{
+  --bg:#8596d5a4;
+  --card:#848af8;
+  --accent:#e5aff1;
+  --muted:#7f91b6;
+  --radius:12px;
+  --maxw:980px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#421e4b 0%,#aa48ad 100%);
+  color:#2a0745;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* header */
+.site-header{
+  max-width:var(--maxw);
+  margin:28px auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+.brand{
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:0.2px;
+  color: #e5aff1;
+}
+nav a{margin-left:12px}
+
+/* buttons */
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  border:1px solid transparent;
+  background:var(--accent);
+  color:rgb(239, 204, 235);
+}
+.btn.ghost{
+  background:transparent;
+  color:var(--accent);
+  border-color:rgba(31,111,235,0.12);
+}
+.btn.large{padding:14px 20px; font-size:16px}
+.btn.full{width:100%}
+
+/* hero */
+.hero{
+  max-width:var(--maxw);
+  margin:28px auto;
+  background:transparent;
+  padding:28px 20px;
+  border-radius:var(--radius);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+}
+.hero-inner{
+  width:100%;
+  text-align:center;
+  padding:48px 20px;
+  background:linear-gradient(180deg,rgba(216, 129, 203, 0.9),rgba(179, 101, 167, 0.9));
+  border-radius:16px;
+  box-shadow:0 8px 30px rgba(24, 45, 84, 0.845);
+}
+.hero h1{margin:0; font-size:36px}
+.hero p{color: #2a0745; margin:12px 0 20px}
+
+/* auth pages */
+.auth-page{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:calc(100vh - 40px);
+  padding:20px;
+}
+.card{background:var(--card); border-radius:16px; box-shadow:0 10px 30px rgba(229, 78, 196, 0.06)}
+.auth-card{width:420px; padding:28px}
+.auth-card h2{margin:0 0 12px}
+
+/* form */
+label{display:block; font-size:14px; color:#0f172a; margin-bottom:12px}
+input[type="text"], input[type="email"], input[type="password"]{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e6e9ef;
+  outline:none;
+  margin-top:8px;
+  font-size:14px;
+}
+.password-row{display:flex; gap:8px; align-items:center}
+.password-row .show-pass{
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid #e6e9ef;
+  background:transparent;
+  cursor:pointer;
+}
+
+/* small helpers */
+.form-actions{margin-top:18px}
+.muted{color:var(--muted); font-size:13px; margin-top:14px}
+.muted a{color:var(--accent); text-decoration:none}
+
+/* responsive */
+@media (max-width:520px){
+  .auth-card{width:100%}
+  .hero h1{font-size:28px}
+  .site-header{padding:0 12px}
+}
