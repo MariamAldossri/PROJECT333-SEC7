@@ -1,0 +1,472 @@
+/* ===== Global ===== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0f172a;   /* dark blue/gray */
+    color: #e5e7eb;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ===== App Layout ===== */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+    width: 260px;
+    background: #020617; /* very dark */
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4f46e5, #22d3ee);
+    font-size: 20px;
+}
+
+.app-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.app-subtitle {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+/* sidebar button */
+
+.btn-primary {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: none;
+    background: #4f46e5;
+    color: #eef2ff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, backgroun 0.15s ease;
+}
+
+.btn-primary:hover {
+    background: #4338ca;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(79, 70, 229, 0.55);
+}
+
+/* nav */
+
+.nav-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: auto;
+}
+
+.nav-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: rgba(148, 163, 184, 0.15);
+}
+
+.nav-item.active {
+    background: rgba(79, 70, 229, 0.18);
+    color: #c7d2fe;
+}
+
+/* sidebar footer */
+
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.teacher-name {
+    font-size: 0.9rem;
+}
+
+.teacher-role {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.logout-btn {
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #4b5563;
+    background: transparent;
+    color: #e5e7eb;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #111827;
+}
+
+/* ===== Main Area ===== */
+
+.main {
+    flex: 1;
+    padding: 24px 32px;
+    background: radial-gradient(circle at top left, #1d283a 0, #020617 55%);
+}
+
+.main-header h1 {
+    margin: 0 0 6px;
+    font-size: 1.4rem;
+}
+
+.main-header p {
+    margin: 0;
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+/* ===== Stats Grid ===== */
+
+.stats-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #0b1220, #020617);
+    border-radius: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.stat-sub {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+/* ===== Resources Section ===== */
+
+.section {
+    margin-top: 28px;
+}
+
+.section h2 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+}
+
+.resource-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    background: #020617;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.7);
+    margin-bottom: 10px;
+}
+
+.resource-icon {
+    font-size: 1.5rem;
+    margin-right: 4px;
+}
+
+.resource-main {
+    flex: 1;
+}
+
+.resource-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.resource-header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(59, 130, 246, 0.2);
+    color: #bfdbfe;
+}
+
+.badge-video {
+    background: rgba(236, 72, 153, 0.2);
+    color: #f9a8d4;
+}
+
+.badge-link {
+    background: rgba(45, 212, 191, 0.2);
+    color: #99f6e4;
+}
+
+.resource-desc {
+    margin: 4px 0 6px;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+}
+
+.resource-meta {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.resource-side {
+    text-align: right;
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+/* ===== Modal (Add New Resource) ===== */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-backdrop.modal-show {
+    display: flex;
+}
+
+.modal-dialog {
+    background: #ffffff;
+    color: #111827;
+    border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    width: 440px;
+    max-width: calc(100% - 32px);
+    padding: 20px 24px 16px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.modal-close {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.modal-close:hover {
+    color: #111827;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+/* Form fields in modal */
+
+.field-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #111827;
+}
+
+.field-label input[type="text"],
+.field-label textarea {
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    outline: none;
+    background: #f9fafb;
+}
+
+.field-label input[type="text"]:focus,
+.field-label textarea:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+}
+
+.field-label textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Resource type pills */
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resource-type-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.radio-pill {
+    position: relative;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.radio-pill input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-pill-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 6px 12px;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.radio-pill .icon {
+    font-size: 1rem;
+}
+
+.radio-pill input:checked + .radio-pill-content {
+    background: #e0ebff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+}
+
+/* Modal footer buttons */
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btn-secondary {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    background: #f3f4f6;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #111827;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+/* round primary button inside modal */
+.modal-footer .btn-primary {
+    border-radius: 999px;
+    padding-inline: 18px;
+}

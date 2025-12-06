@@ -1,0 +1,275 @@
+<?php
+require 'db.php';
+
+// Fetch recent resources for the cards (last 3)
+$stmt = $pdo->query("
+    SELECT id, title, resource_type, description, created_at
+    FROM resources
+    ORDER BY created_at DESC
+    LIMIT 3
+");
+$recentResources = $stmt->fetchAll();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Resources – Teacher Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-icon">🎓</div>
+            <div>
+                <div class="app-title">Course Resources</div>
+                <div class="app-subtitle">Teacher View</div>
+            </div>
+        </div>
+
+        <!-- button now has an id to open the modal -->
+        <button class="btn-primary" id="openAddResourceModal">
+            + Add Resource
+        </button>
+
+        <nav class="nav">
+            <div class="nav-label">Navigation</div>
+            <a href="#" class="nav-item active">
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>All Resources</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="avatar">T</div>
+            <div>
+                <div class="teacher-name">Teacher</div>
+                <div class="teacher-role">Admin</div>
+                <button class="logout-btn" onclick="window.location.href='logout.php'">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+        <header class="main-header">
+            <h1>Teacher Dashboard</h1>
+            <p>Manage course resources and view student engagement.</p>
+        </header>
+
+        <!-- Stats cards -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Resources</div>
+                <div class="stat-value">6</div>
+                <div class="stat-sub">Course materials</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Comments</div>
+                <div class="stat-value">24</div>
+                <div class="stat-sub">Discussion posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active Students</div>
+                <div class="stat-value">18</div>
+                <div class="stat-sub">This week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Recent Activity</div>
+                <div class="stat-value">9</div>
+                <div class="stat-sub">Last 24 hours</div>
+            </div>
+        </section>
+
+        <!-- Recent resources -->
+        <section class="section">
+            <h2>Recent Resources</h2>
+
+            <!-- Resource 1 -->
+            <article class="resource-card">
+                <div class="resource-icon">📄</div>
+                <div class="resource-main">
+                    <div class="resource-header">
+                        <h3>Chapter 1: Introduction to Course</h3>
+                        <span class="badge">Document</span>
+                    </div>
+                    <p class="resource-desc">
+                        Overview of the course structure, expectations, grading policy, and key topics that will be covered during the semester.
+                    </p>
+                    <div class="resource-meta">
+                        <span>Added by Teacher</span>
+                        <span>•</span>
+                        <span>Book Chapter</span>
+                    </div>
+                </div>
+                <div class="resource-side">
+                    <div class="resource-date">Nov 25, 2025</div>
+                    <div class="resource-comments">12 comments</div>
+                </div>
+            </article>
+
+            <!-- Resource 2 -->
+            <article class="resource-card">
+                <div class="resource-icon">🎥</div>
+                <div class="resource-main">
+                    <div class="resource-header">
+                        <h3>Lecture 2: Basic Concepts</h3>
+                        <span class="badge badge-video">Video</span>
+                    </div>
+                    <p class="resource-desc">
+                        Recorded lecture explaining fundamental concepts with examples. Recommended for students who missed the live session.
+                    </p>
+                    <div class="resource-meta">
+                        <span>Added by Teacher</span>
+                        <span>•</span>
+                        <span>Lecture Notes & Video</span>
+                    </div>
+                </div>
+                <div class="resource-side">
+                    <div class="resource-date">Nov 22, 2025</div>
+                    <div class="resource-comments">5 comments</div>
+                </div>
+            </article>
+
+            <!-- Resource 3 -->
+            <article class="resource-card">
+                <div class="resource-icon">🔗</div>
+                <div class="resource-main">
+                    <div class="resource-header">
+                        <h3>Interactive Practice Website</h3>
+                        <span class="badge badge-link">Link</span>
+                    </div>
+                    <p class="resource-desc">
+                        External website with interactive quizzes and exercises to help students review and practice key course concepts.
+                    </p>
+                    <div class="resource-meta">
+                        <span>Added by Teacher</span>
+                        <span>•</span>
+                        <span>Web Link</span>
+                    </div>
+                </div>
+                <div class="resource-side">
+                    <div class="resource-date">Nov 20, 2025</div>
+                    <div class="resource-comments">7 comments</div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+</div>
+
+<!-- ========== Add New Resource Modal ========== -->
+<div class="modal-backdrop" id="addResourceModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="addResourceTitle">
+        <div class="modal-header">
+            <h2 id="addResourceTitle">Add New Resource</h2>
+            <button type="button" class="modal-close" id="closeAddResourceModal" aria-label="Close">
+                &times;
+            </button>
+        </div>
+
+        <form id="addResourceForm">
+            <div class="modal-body">
+                <!-- Title -->
+                <label class="field-label">
+                    <span>Title</span>
+                    <input type="text" name="title" placeholder="Enter resource title" required>
+                </label>
+
+                <!-- Resource Type -->
+                <div class="field-group">
+                    <div class="field-label">
+                        <span>Resource Type</span>
+                    </div>
+                    <div class="resource-type-options">
+                        <label class="radio-pill">
+                            <input type="radio" name="resource_type" value="document" checked>
+                            <span class="radio-pill-content">
+                                <span class="icon">📄</span>
+                                <span>Document</span>
+                            </span>
+                        </label>
+
+                        <label class="radio-pill">
+                            <input type="radio" name="resource_type" value="video">
+                            <span class="radio-pill-content">
+                                <span class="icon">🎥</span>
+                                <span>Video</span>
+                            </span>
+                        </label>
+
+                        <label class="radio-pill">
+                            <input type="radio" name="resource_type" value="link">
+                            <span class="radio-pill-content">
+                                <span class="icon">🔗</span>
+                                <span>Link</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <label class="field-label">
+                    <span>Description</span>
+                    <textarea name="description" rows="4"
+                              placeholder="Describe the resource content..." required></textarea>
+                </label>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelAddResource">
+                    Cancel
+                </button>
+                <button type="submit" class="btn-primary">
+                    Add Resource
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const openBtn   = document.getElementById('openAddResourceModal');
+    const modal     = document.getElementById('addResourceModal');
+    const closeBtn  = document.getElementById('closeAddResourceModal');
+    const cancelBtn = document.getElementById('cancelAddResource');
+    const form      = document.getElementById('addResourceForm');
+
+    function openModal() {
+        modal.classList.add('modal-show');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+        modal.classList.remove('modal-show');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    // close when clicking on the dark area
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // demo only – stop full page reload
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Resource added (front-end demo). Connect this to PHP later.');
+        form.reset();
+        closeModal();
+    });
+</script>
+</body>
+</html>
